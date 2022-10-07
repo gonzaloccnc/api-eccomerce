@@ -6,7 +6,6 @@ import dotennv from 'dotenv'
 import imageRouter from './routes/Image.js'
 import RootRouter from './routes/Root.js'
 import compression from 'compression'
-
 const app = express()
 
 dotennv.config()
