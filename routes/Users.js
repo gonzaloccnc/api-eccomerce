@@ -48,15 +48,15 @@ userRouter.post("/users", (req, res) => {
 
 userRouter.get("/users/validate", (req, res) => {
   const query = req.query;
-  if (query.email !== undefined) {
-    User.findOne({ email: query.email })
+  if (query.email !== undefined && query.password !== undefined) {
+    User.findOne({ email: query.email, password: query.password })
       .then((user) => {
         if (user === null) res.json({ find: false });
         else res.json({ find: true });
       })
       .catch((err) => res.status(500).json({ error: err }));
   } else {
-    res.status(400).json({ error: "email undefined" });
+    res.status(400).json({ error: "email and password is requided" });
   }
 });
 
