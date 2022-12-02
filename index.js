@@ -3,7 +3,6 @@ import cnxMongo from "./config/cnxMongo.js";
 import cors from "cors";
 import productRouter from "./routes/Products.js";
 import dotennv from "dotenv";
-import imageRouter from "./routes/Image.js";
 import RootRouter from "./routes/Root.js";
 import compression from "compression";
 import userRoter from "./routes/Users.js";
