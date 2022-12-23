@@ -1,3 +1,5 @@
+import Product from '../../../schemas/Product.js'
+
 export const getProductById = (req, res) => {
   const { id } = req.params;
   Product.findById(id)

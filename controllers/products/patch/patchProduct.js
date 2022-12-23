@@ -1,3 +1,6 @@
+import jwt from 'jsonwebtoken'
+import Product from '../../../schemas/Product.js'
+
 export const patchProduct = (req, res) => {
 
   const authorization = req.get('authorization')

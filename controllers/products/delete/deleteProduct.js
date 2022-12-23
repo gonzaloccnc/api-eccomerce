@@ -1,3 +1,5 @@
+import Product from '../../../schemas/Product.js'
+
 export const deleteProduct = (req, res) => {
   const authorization = req.get('authorization')
   let token = null

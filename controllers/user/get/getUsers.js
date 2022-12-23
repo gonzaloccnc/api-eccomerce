@@ -10,8 +10,6 @@ export const getUsers = (req, res) => {
       })
       .catch(error => res.json({ err: error.message }));
   } else {
-    User.find({})
-      .then(users => res.json(users))
-      .catch(err => res.status(500).json({ error: err.message }));
+    res.status(404).json({ error: "email and password is required" })
   }
 }

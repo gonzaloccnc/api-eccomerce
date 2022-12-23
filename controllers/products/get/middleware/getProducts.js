@@ -1,6 +1,7 @@
+import Product from "../../../../schemas/Product.js";
+
 export const middlewareGetProducts = (req, res, next) => {
   const host = req.protocol + "://" + req.get("host");
-
   Product.find({}).then((products) => {
     products.forEach((p) => {
       const { id, category, description, nameProduct } = p;
