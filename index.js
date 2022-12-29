@@ -2,14 +2,18 @@ import express from "express";
 import cnxMongo from "./config/cnxMongo.js";
 import cors from "cors";
 import productRouter from "./routes/Products.js";
-import dotennv from "dotenv";
+import "dotenv/config.js";
 import RootRouter from "./routes/Root.js";
 import compression from "compression";
 import userRoter from "./routes/Users.js";
+import { authUsers } from "./controllers/user/middlewares/authRoutes.js";
+import { validateAccess } from "./controllers/products/middleware/validateAccess.js";
 
-const app = express();
+const app = express()
 
-dotennv.config();
+app.all('/api/products', validateAccess)
+app.all('/api/products/:id', validateAccess)
+app.use(authUsers)
 app.use('/api/images', express.static('public/Images'))
 app.use(compression());
 app.use(cors());

@@ -1,4 +1,4 @@
-import User from "../../schemas/User.js";
+import User from "../../../schemas/User.js";
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 import dotenv from 'dotenv'
@@ -15,11 +15,13 @@ export const authUser = async (req, res) => {
       : await bcrypt.compare(query.password, user.password)
 
     if (!(user && passwordCorrect)) {
-      res.status(401).json({ error: 'invalid user or password' })
+      res.status(400).json({ error: 'invalid user or password' })
     }
     else {
       const host = req.get('host')
-      const role = JSON.parse(process.env.WEBS).includes(host) ? "user" : "admin"
+
+      // para pruebas en la bd test -> process.env.ENVIROMENT === 'DEVELOPMENT' ? 'admin' : 'user'
+      const role = "user"
 
       const userToken = {
         id: user.id,
@@ -28,10 +30,9 @@ export const authUser = async (req, res) => {
         role
       }
 
-      const token = jwt.sign(userToken, process.env.SECRET)
+      const token = jwt.sign(userToken, process.env.SECRET, { expiresIn: '1w' })
 
       res.json({
-        email: user.email,
         token
       })
     }
