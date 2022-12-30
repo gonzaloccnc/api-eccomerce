@@ -2,10 +2,9 @@ import { Router } from "express";
 import { deleteProduct } from "../controllers/products/delete/deleteProduct.js";
 import { getAllProducts } from "../controllers/products/get/getAllProducts.js";
 import { getProductById } from "../controllers/products/get/getProductById.js";
-import { middlewareGetProducts } from "../controllers/products/get/middleware/getProducts.js";
+import { middlewareGetProducts } from "../controllers/products/middleware/getProducts.js";
 import { patchProduct } from "../controllers/products/patch/patchProduct.js";
 import { postProduct } from "../controllers/products/post/postProduct.js";
-import Product from "../schemas/Product.js";
 
 const productRouter = Router();
 

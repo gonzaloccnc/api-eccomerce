@@ -1,4 +1,4 @@
-import User from "../../schemas/User.js";
+import User from "../../../schemas/User.js";
 import dotenv from 'dotenv'
 import bcrypt from 'bcrypt'
 

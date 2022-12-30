@@ -1,4 +1,4 @@
-import Product from "../../../../schemas/Product.js";
+import Product from "../../../schemas/Product.js";
 
 export const middlewareGetProducts = (req, res, next) => {
   const host = req.protocol + "://" + req.get("host");
