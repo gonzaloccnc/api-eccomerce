@@ -1,9 +1,6 @@
 import jwt from 'jsonwebtoken'
 
 export const validateAccess = (req, res, next) => {
-    if (!['PATCH', 'POST', 'DELETE'].includes(req.method))
-        return next()
-
     const authorization = req.get('authorization')
     let token = null
 

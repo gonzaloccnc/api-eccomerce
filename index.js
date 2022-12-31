@@ -6,24 +6,18 @@ import "dotenv/config.js";
 import RootRouter from "./routes/Root.js";
 import compression from "compression";
 import userRoter from "./routes/Users.js";
-import { authRoutes } from "./controllers/user/middlewares/authRoutes.js";
-import { validateAccess } from "./controllers/products/middleware/validateAccess.js";
 
 const app = express()
 
-app.all('/api/products', validateAccess)
-app.all('/api/products/:id', validateAccess)
-app.use(authRoutes)
-app.use('/api/images', express.static('public/Images'))
 app.use(compression());
 app.use(cors());
-app.use(express.json()); // parsea el req.body de las peticiones post
-
+app.use(express.json()); // parsea el req.body de las peticiones
 app.use(RootRouter);
 app.use("/api", productRouter);
 app.use("/api", userRoter);
+app.use('/api/images', express.static('public/Images'))
 
-const PORT = process.env.PORT || 4050;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   cnxMongo();
 });

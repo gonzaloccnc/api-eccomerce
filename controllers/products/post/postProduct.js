@@ -1,8 +1,5 @@
 import Product from "../../../schemas/Product.js";
-import dotenv from "dotenv"
-import jwt from 'jsonwebtoken'
-
-dotenv.config()
+import "dotenv/config"
 
 export const postProduct = (req, res) => {
   const product = req.body;
@@ -11,7 +8,6 @@ export const postProduct = (req, res) => {
       error: "must have content",
     });
   }
-
 
   const newProduct = new Product({
     nameProduct: product.nameProduct,
