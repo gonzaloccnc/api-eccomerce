@@ -1,6 +1,7 @@
 import User from "../../../schemas/User.js";
 import dotenv from 'dotenv'
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 
 dotenv.config()
 
@@ -23,7 +24,15 @@ export const postUsers = async (req, res) => {
 
     const newUserJs = await newUser.save()
 
-    res.status(201).json(newUserJs)
+    const userToken = {
+      id: newUserJs.id,
+      email: newUserJs.email,
+      username: newUserJs.username,
+      role: "user"
+    }
+
+    const token = jwt.sign(userToken, process.env.SECRET, { expiresIn: '1w' })
+    res.status(201).json({ token })
   }
   catch (err) {
     res.status(500).json({ message: err.message })
